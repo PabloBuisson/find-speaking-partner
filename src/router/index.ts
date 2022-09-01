@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 // import HomeView from "../views/HomeView.vue";
 import NotFound from "../views/NotFound.vue";
 import PartnersLists from "@/views/partners/PartnersList.vue";
-import { useStore } from "@/store";
+import { useStore } from "@/stores";
 
 // routes
 const HomeView = () => import("../views/HomeView.vue");
