@@ -1,19 +1,10 @@
 import { defineStore } from "pinia";
 
+import type { Partner } from "../models/interfaces/partner";
+
 interface State {
   lastFetch: number | null;
   partners: Partner[];
-}
-
-interface Partner {
-  id: any;
-  firstName: string;
-  lastName: string;
-  pseudo?: string;
-  email?: string;
-  description: string;
-  languagesLearnt: string[];
-  languagesWanted: string[];
 }
 
 export const usePartnersStore = defineStore("partners", {
@@ -22,11 +13,12 @@ export const usePartnersStore = defineStore("partners", {
     partners: [
       {
         id: "p1",
-        firstName: "Elon",
-        lastName: "Musk",
+        firstName: "Terry",
+        lastName: "Pratchett",
         languagesLearnt: ["English"],
         languagesWanted: ["French"],
-        description: "I'm Elon Musk. What else ?",
+        description: "I like carnivorous plants.",
+        level: "professional",
       },
       {
         id: "p2",
@@ -35,11 +27,13 @@ export const usePartnersStore = defineStore("partners", {
         languagesLearnt: ["French"],
         languagesWanted: ["English"],
         description: "I'm Pablo and I would like to improve my english !",
+        level: "intermediate"
       },
     ],
   }),
   getters: {
-    partners(state): Partner[] {
+    // ⚠ A getter cannot have the same name as another state property.
+    partnersList(state): Partner[] {
       return state.partners;
     },
     hasPartners(state): boolean {
@@ -47,7 +41,7 @@ export const usePartnersStore = defineStore("partners", {
     },
     isPartner(_): boolean {
       // other getters now on `this`
-      const partners = this.partners;
+      const partners = this.partnersList;
       // const userId = rootGetters.userId; TODO
       return partners.some((partner: Partner) => partner.id === "userId");
     },
@@ -65,8 +59,13 @@ export const usePartnersStore = defineStore("partners", {
     registerPartner() {
       //TODO
     },
-    loadPartners() {
+    loadPartners(payload: { forceRefresh: boolean }) {
+      if (!payload.forceRefresh && this.shouldUpdate) {
+        return;
+      }
       //TODO
+      const partners: Partner[] = this.partnersList;
+      this.setPartners(partners);
     },
     // mutations can now become actions,
     // instead of `state` as first argument use `this`

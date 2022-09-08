@@ -5,7 +5,7 @@ import PartnersLists from "@/views/partners/PartnersList.vue";
 import { useStore } from "@/stores";
 
 // routes
-const HomeView = () => import("../views/HomeView.vue");
+//const HomeView = () => import("../views/HomeView.vue");
 const PartnerDetails = () => import("../views/partners/PartnerDetails.vue");
 const PartnerRegistration = () =>
   import("../views/partners/PartnerRegistration.vue");
@@ -14,13 +14,9 @@ const RequestsReceived = () => import("../views/requests/RequestsReceived.vue");
 const UserAuth = () => import("../views/auth/UserAuth.vue");
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL), //TODO
+  history: createWebHistory(),
   routes: [
-    {
-      path: "/",
-      name: "home",
-      component: HomeView,
-    },
+    { path: "/", redirect: "/partners" },
     {
       path: "/partners",
       name: "partners",

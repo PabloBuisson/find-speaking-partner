@@ -2,20 +2,20 @@
   <header>
     <nav>
       <h1>
-        <router-link to="/">Find a Speaking Partner</router-link>
+        <RouterLink to="/">Find a Speaking Partner</RouterLink>
       </h1>
       <ul>
         <li>
-          <router-link to="/partners">Partners</router-link>
+          <RouterLink to="/partners">Partners</RouterLink>
         </li>
         <li v-if="isLoggedIn">
-          <router-link to="/requests">Requests</router-link>
+          <RouterLink to="/requests">Requests</RouterLink>
         </li>
         <li v-else>
-          <router-link to="/auth">Login</router-link>
+          <RouterLink to="/auth">Login</RouterLink>
         </li>
         <li v-if="isLoggedIn">
-          <base-button @click="logout">Logout</base-button>
+          <BaseButton @click="logout">Logout</BaseButton>
         </li>
       </ul>
     </nav>
