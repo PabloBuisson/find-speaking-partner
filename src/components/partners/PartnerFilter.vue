@@ -1,6 +1,7 @@
 <template>
   <BaseCard>
     <h2>Find Your Partner</h2>
+    <p>Learning level</p>
     <span class="filter-option">
       <input type="checkbox" id="professional" checked @change="setFilter" />
       <label for="professional">Professional</label>

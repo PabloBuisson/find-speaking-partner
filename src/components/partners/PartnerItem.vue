@@ -1,21 +1,21 @@
 <template>
   <li>
-    <h3>{{ fullName }}</h3>
-    <h4>Level {{ partner.level }}</h4>
-    <div>
-      <BaseBadge
-        v-for="lang in partner.languagesLearnt"
-        :key="lang"
-        :type="lang"
-        :title="lang"
-      ></BaseBadge>
-      <BaseBadge
-        v-for="lang in partner.languagesWanted"
-        :key="lang"
-        :type="lang"
-        :title="lang"
-      ></BaseBadge>
-    </div>
+    <p>{{ fullName }}</p>
+    <p>Learning level : {{ partner.level }}</p>
+    <p>Speaks</p>
+    <BaseBadge
+      v-for="lang in partner.langNative"
+      :key="lang"
+      type="native"
+      :title="lang"
+    ></BaseBadge>
+    <p>Practicing</p>
+    <BaseBadge
+      v-for="lang in partner.langPractice"
+      :key="lang"
+      type="practice"
+      :title="lang"
+    ></BaseBadge>
     <div class="actions">
       <BaseButton mode="outline" link :to="coachContactLink"
         >Contact</BaseButton

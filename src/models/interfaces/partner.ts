@@ -1,11 +1,13 @@
 export interface Partner {
-  id: any;
+  id: string | number;
   firstName: string;
   lastName: string;
   pseudo?: string;
   email?: string;
   description: string;
-  languagesLearnt: string[];
-  languagesWanted: string[];
+  langNative: string[];
+  langPractice: string[];
   level: "professional" | "intermediate" | "beginner";
+  interest?: string;
+  exchange: Array<"conversation" | "chat" | "correspondence">;
 }

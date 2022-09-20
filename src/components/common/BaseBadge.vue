@@ -19,26 +19,17 @@ export default defineComponent({
 
 <style scoped>
 .badge {
-  background-color: #ccc;
-  color: #252525;
-  border-radius: 30px;
+  border: 0.125rem solid grey;
+  border-radius: 0.25rem;
   padding: 0.5rem 1.5rem;
   display: inline-block;
   margin-right: 0.5rem;
 }
 
-.frontend {
-  background-color: #3d008d;
-  color: white;
+.native {
+  border-color: #3d008d;
 }
-
-.backend {
-  background-color: #71008d;
-  color: white;
-}
-
-.career {
-  background-color: #8d006e;
-  color: white;
+.practice {
+  border-color: #71008d;
 }
 </style>

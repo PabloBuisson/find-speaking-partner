@@ -15,19 +15,25 @@ export const usePartnersStore = defineStore("partners", {
         id: "p1",
         firstName: "Terry",
         lastName: "Pratchett",
-        languagesLearnt: ["English"],
-        languagesWanted: ["French"],
+        langNative: ["English"],
+        langPractice: ["French"],
         description: "I like carnivorous plants.",
         level: "professional",
+        interest:
+          "Writing, science, nature and conversations with flat-earthers.",
+        exchange: ["correspondence"],
       },
       {
         id: "p2",
         firstName: "Pablo",
         lastName: "Buisson",
-        languagesLearnt: ["French"],
-        languagesWanted: ["English"],
+        langNative: ["French"],
+        langPractice: ["English"],
         description: "I'm Pablo and I would like to improve my english !",
-        level: "intermediate"
+        level: "intermediate",
+        interest:
+          "Writing, Programming, Reading, and in general every word which ends with 'ing'.",
+        exchange: ["conversation"],
       },
     ],
   }),
@@ -39,7 +45,7 @@ export const usePartnersStore = defineStore("partners", {
     hasPartners(state): boolean {
       return state.partners && state.partners.length > 0;
     },
-    isPartner(_): boolean {
+    isPartner(): boolean {
       // other getters now on `this`
       const partners = this.partnersList;
       // const userId = rootGetters.userId; TODO
