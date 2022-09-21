@@ -18,19 +18,6 @@
           type="practice"
           :title="lang"
         ></base-badge>
-      </base-card>
-    </section>
-    <section>
-      <base-card>
-        <header>
-          <h2>Interested? Reach out now!</h2>
-          <base-button link :to="contactLink">Contact</base-button>
-        </header>
-        <RouterView></RouterView>
-      </base-card>
-    </section>
-    <section>
-      <base-card>
         <h2>Who am I ?</h2>
         <p>{{ description }}</p>
         <h2>I'm interested in...</h2>
@@ -41,6 +28,14 @@
         </li>
       </base-card>
     </section>
+    <section>
+      <base-card>
+        <header>
+          <h2 :id="contactAnchor">Interested? Reach out now!</h2>
+          <ContactPartner></ContactPartner>
+        </header>
+      </base-card>
+    </section>
   </div>
 </template>
 
@@ -48,6 +43,7 @@
 import { usePartnersStore } from "@/stores/partners-store";
 import { defineComponent } from "vue";
 import type { Partner } from "../../models/interfaces/partner";
+import ContactPartner from "../requests/ContactPartner.vue";
 
 export default defineComponent({
   props: ["id"],
@@ -57,6 +53,9 @@ export default defineComponent({
     };
   },
   computed: {
+    contactAnchor(): string {
+      return `contact-${this.id}`;
+    },
     fullName(): string {
       return this.selectedPartner != null
         ? this.selectedPartner.firstName + " " + this.selectedPartner.lastName
@@ -91,7 +90,6 @@ export default defineComponent({
   },
   setup() {
     const partnersStore = usePartnersStore();
-
     return { partnersStore };
   },
   created(): void {
@@ -99,5 +97,6 @@ export default defineComponent({
       (partner) => partner.id === this.id
     ) as Partner;
   },
+  components: { ContactPartner },
 });
 </script>

@@ -17,10 +17,10 @@
       :title="lang"
     ></BaseBadge>
     <div class="actions">
-      <BaseButton mode="outline" link :to="coachContactLink"
+      <BaseButton mode="outline" link :to="partnerContactLink"
         >Contact</BaseButton
       >
-      <BaseButton link :to="coachDetailsLink">View Details</BaseButton>
+      <BaseButton link :to="partnerDetailsLink">View Details</BaseButton>
     </div>
   </li>
 </template>
@@ -34,10 +34,13 @@ export default defineComponent({
     fullName() {
       return this.partner.firstName + " " + this.partner.lastName;
     },
-    coachContactLink() {
-      return this.$route.path + "/" + this.partner.id + "/contact"; // /partners/p1/contact
+    partnerContactLink() {
+      return {
+        path: this.$route.path + "/" + this.partner.id,
+        hash: `#contact-${this.partner.id}`,
+      }; // /partners/p1/contact
     },
-    coachDetailsLink() {
+    partnerDetailsLink() {
       return this.$route.path + "/" + this.partner.id; // /partners/p1
     },
   },
