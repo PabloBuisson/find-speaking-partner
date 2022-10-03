@@ -41,13 +41,11 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
-import { usePartnersStore } from "../../stores/partners-store";
-import { useAuthStore } from "../../stores/auth-store";
-
-import type { Partner } from "../../models/interfaces/partner";
-
+import { useAuthStore } from "@/stores/auth-store";
+import type { Partner } from "@/models/interfaces/partner";
 import PartnerItem from "../../components/partners/PartnerItem.vue";
 import PartnerFilter from "../../components/partners/PartnerFilter.vue";
+import { usePartnersStore } from "@/stores/partners-store";
 
 export default defineComponent({
   components: {
@@ -82,7 +80,7 @@ export default defineComponent({
       return this.partnersStore.isPartner;
     },
     filteredPartners(): Partner[] {
-      const partners: Partner[] = this.partnersStore.partnersList;
+      const partners: Partner[] = this.partnersStore.partners;
       return partners.filter((partners) => {
         if (
           this.activeFilters.professional &&

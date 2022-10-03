@@ -19,7 +19,7 @@ export const useRequestsStore = defineStore("requests", {
   getters: {
     savedRequests(state: State): Request[] {
       const authStore = useAuthStore();
-      const coachId = authStore.userId;
+      const coachId = authStore._userId;
       return state.requests.filter((req) => req.coachId === coachId);
     },
     hasRequests(): boolean {
@@ -36,14 +36,14 @@ export const useRequestsStore = defineStore("requests", {
       const newRequest = {
         userEmail: payload.email,
         message: payload.message,
-        partnerId: payload.partnerId
+        partnerId: payload.partnerId,
       };
       // TODO
     },
     async fetchRequests() {
       const authStore = useAuthStore();
-      const coachId = authStore.userId;
-      const token = authStore.token;
+      const coachId = authStore._userId;
+      const token = authStore._token;
       // TODO
       // const response = await fetch(
       //   `https://vue-find-coach-18842-default-rtdb.europe-west1.firebasedatabase.app/requests/${coachId}.json?auth=` +

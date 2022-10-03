@@ -1,16 +1,17 @@
 import { defineStore } from "pinia";
-
+import { useAuthStore } from "./auth-store";
 import type { Partner } from "../models/interfaces/partner";
+import type { PartnerRegistration } from "@/models/interfaces/partner-registration";
 
 interface State {
-  lastFetch: number | null;
-  partners: Partner[];
+  _lastFetch: number | null;
+  _partners: Partner[];
 }
 
 export const usePartnersStore = defineStore("partners", {
   state: (): State => ({
-    lastFetch: null,
-    partners: [
+    _lastFetch: null,
+    _partners: [
       {
         id: "p1",
         firstName: "Terry",
@@ -39,20 +40,20 @@ export const usePartnersStore = defineStore("partners", {
   }),
   getters: {
     // ⚠ A getter cannot have the same name as another state property.
-    partnersList(state): Partner[] {
-      return state.partners;
+    partners(state): Partner[] {
+      return state._partners;
     },
     hasPartners(state): boolean {
-      return state.partners && state.partners.length > 0;
+      return state._partners && state._partners.length > 0;
     },
     isPartner(): boolean {
       // other getters now on `this`
-      const partners = this.partnersList;
+      const partners = this.partners;
       // const userId = rootGetters.userId; TODO
       return partners.some((partner: Partner) => partner.id === "userId");
     },
     shouldUpdate(state): boolean {
-      const lastFetch = state.lastFetch;
+      const lastFetch = state._lastFetch;
       if (!lastFetch) {
         return true;
       }
@@ -62,27 +63,34 @@ export const usePartnersStore = defineStore("partners", {
   },
   actions: {
     // no context as first argument, use `this` instead
-    registerPartner() {
-      //TODO
+    registerPartner(data: PartnerRegistration) {
+      const authStore = useAuthStore();
+      const partnerId = authStore._userId;
+      const partnerData = data;
+
+      this.registerPartnerMutation({
+        ...partnerData,
+        id: partnerId ?? 0,
+      });
     },
     loadPartners(payload: { forceRefresh: boolean }) {
       if (!payload.forceRefresh && this.shouldUpdate) {
         return;
       }
       //TODO
-      const partners: Partner[] = this.partnersList;
+      const partners: Partner[] = this.partners;
       this.setPartners(partners);
     },
     // mutations can now become actions,
     // instead of `state` as first argument use `this`
     registerPartnerMutation(payload: Partner) {
-      this.partners.push(payload);
+      this._partners.push(payload);
     },
     setPartners(payload: Partner[]) {
-      this.partners = payload;
+      this._partners = payload;
     },
     setFetchTimestamp() {
-      this.lastFetch = new Date().getTime();
+      this._lastFetch = new Date().getTime();
     },
     // easily reset state using `$reset`
     clearStore() {

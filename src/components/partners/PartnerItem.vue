@@ -35,10 +35,12 @@ export default defineComponent({
       return this.partner.firstName + " " + this.partner.lastName;
     },
     partnerContactLink() {
-      return {
-        path: this.$route.path + "/" + this.partner.id,
+      const link = {
+        path: `${this.$route.path}/${this.partner.id}`,
         hash: `#contact-${this.partner.id}`,
-      }; // /partners/p1/contact
+      };
+      return link;
+      // { name: 'partners', params: { id: 'p1' }, hash: '#contact-p1' }
     },
     partnerDetailsLink() {
       return this.$route.path + "/" + this.partner.id; // /partners/p1

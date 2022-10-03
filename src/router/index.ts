@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 // import HomeView from "../views/HomeView.vue";
 import NotFound from "../views/NotFound.vue";
 import PartnersLists from "@/views/partners/PartnersList.vue";
-import { useStore } from "@/stores";
+import { useAuthStore } from "@/stores/auth-store";
 
 // routes
 //const HomeView = () => import("../views/HomeView.vue");
@@ -43,6 +43,7 @@ const router = createRouter({
     { path: "/auth", component: UserAuth, meta: { requiresUnauth: true } },
     { path: "/:notFound(.*)", component: NotFound },
   ],
+  // add automatic scroll to anchor
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
       return savedPosition;
@@ -58,11 +59,11 @@ const router = createRouter({
 router.beforeEach(function (to, _, next) {
   // ✅ This will work because the router starts its navigation after
   // the router is installed and pinia will be installed too
-  const store = useStore();
+  const store = useAuthStore();
   if (to.meta.requiresAuth && !store.isAuthenticated) {
     next("/auth");
   } else if (to.meta.requiresUnauth && store.isAuthenticated) {
-    next("/coaches");
+    next("/partners");
   } else {
     next();
   }
