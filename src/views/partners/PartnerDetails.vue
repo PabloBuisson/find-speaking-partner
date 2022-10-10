@@ -78,7 +78,7 @@ export default defineComponent({
     },
     interests(): string {
       return this.selectedPartner != null
-        ? this.selectedPartner.interest ?? ""
+        ? this.selectedPartner.interests ?? ""
         : "";
     },
     typeOfExchange(): Array<"conversation" | "chat" | "correspondence"> {

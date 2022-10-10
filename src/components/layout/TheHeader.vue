@@ -23,20 +23,27 @@
 </template>
 
 <script lang="ts">
-export default {
+import { useAuthStore } from "@/stores/auth-store";
+import { defineComponent } from "vue";
+
+export default defineComponent({
+  setup() {
+    const authStore = useAuthStore();
+
+    return { authStore };
+  },
   computed: {
     isLoggedIn(): boolean {
-      // return this.$store.getters.isAuthenticated;
-      return false;
+      return this.authStore.isAuthenticated;
     },
   },
   methods: {
     logout() {
-      //   this.$store.dispatch("logout");
-      //   this.$router.replace("/coaches");
+      this.authStore.logout();
+      this.$router.replace("/partners");
     },
   },
-};
+});
 </script>
 
 <style scoped>

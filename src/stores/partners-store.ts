@@ -20,7 +20,7 @@ export const usePartnersStore = defineStore("partners", {
         langPractice: ["French"],
         description: "I like carnivorous plants.",
         level: "professional",
-        interest:
+        interests:
           "Writing, science, nature and conversations with flat-earthers.",
         exchange: ["correspondence"],
       },
@@ -32,7 +32,7 @@ export const usePartnersStore = defineStore("partners", {
         langPractice: ["English"],
         description: "I'm Pablo and I would like to improve my english !",
         level: "intermediate",
-        interest:
+        interests:
           "Writing, Programming, Reading, and in general every word which ends with 'ing'.",
         exchange: ["conversation"],
       },

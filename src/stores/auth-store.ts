@@ -11,7 +11,7 @@ enum AuthMode {
   SignUp = "signup",
 }
 
-let timer;
+let timer: any;
 
 export const useAuthStore = defineStore("auth", {
   state: (): State => ({
@@ -69,17 +69,46 @@ export const useAuthStore = defineStore("auth", {
       });
     },
     tryLogin() {
-      //TODO
+      const token = localStorage.getItem("token");
+      const userId = localStorage.getItem("userId");
+      const tokenExpiration = localStorage.getItem("tokenExpiration") ?? "0";
+
+      const expiresIn = parseInt(tokenExpiration) - new Date().getTime();
+
+      if (expiresIn < 0) {
+        return;
+      }
+
+      timer = setTimeout(() => {
+        this.autoLogout();
+      }, expiresIn);
+
+      if (token && userId) {
+        this.setUser({
+          token: token,
+          userId: userId,
+        });
+      }
     },
     logout() {
-      //TODO
+      localStorage.removeItem("token");
+      localStorage.removeItem("userId");
+      localStorage.removeItem("tokenExpiration");
+
+      clearTimeout(timer);
+
+      this.setUser({
+        token: null,
+        userId: null,
+      });
     },
     autoLogout() {
-      //TODO
+      this.logout();
+      this.setAutoLogout();
     },
     // mutations can now become actions,
     // instead of `state` as first argument use `this`
-    setUser(payload: { token: string; userId: string }) {
+    setUser(payload: { token: string | null; userId: string | null }) {
       this._token = payload.token;
       this._userId = payload.userId;
       this._didAutoLogout = false;
