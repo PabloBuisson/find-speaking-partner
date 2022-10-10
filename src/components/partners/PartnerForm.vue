@@ -8,7 +8,9 @@
         v-model.trim="firstName.val"
         @blur="clearValidity('firstName')"
       />
-      <p v-if="!firstName.isValid">Firstname must not be empty.</p>
+      <p class="error-message" v-if="!firstName.isValid">
+        Firstname must not be empty.
+      </p>
     </div>
     <div class="form-control" :class="{ invalid: !lastName.isValid }">
       <label for="lastname">Lastname</label>
@@ -18,7 +20,39 @@
         v-model.trim="lastName.val"
         @blur="clearValidity('lastName')"
       />
-      <p v-if="!lastName.isValid">Lastname must not be empty.</p>
+      <p class="error-message" v-if="!lastName.isValid">
+        Lastname must not be empty.
+      </p>
+    </div>
+    <div class="form-control" :class="{ invalid: !langNative.isValid }">
+      <label for="langnative">You are speaking...</label>
+      <select id="langnative" v-model="langNative.val" multiple>
+        <option @blur="clearValidity('langNative')"
+          v-for="option in langNativeOptions"
+          :key="option.value"
+          :value="option.value"
+        >
+          {{ option.text }}
+        </option>
+      </select>
+      <p class="error-message" v-if="!langNative.isValid">
+        You must select at least one language.
+      </p>
+    </div>
+    <div class="form-control" :class="{ invalid: !langPractice.isValid }">
+      <label for="langpractice">You are learning...</label>
+      <select id="langpractice" v-model="langPractice.val" multiple>
+        <option @blur="clearValidity('langPractice')"
+          v-for="option in langPracticeOptions"
+          :key="option.value"
+          :value="option.value"
+        >
+          {{ option.text }}
+        </option>
+      </select>
+      <p class="error-message" v-if="!langPractice.isValid">
+        You must select at least one language.
+      </p>
     </div>
     <div class="form-control" :class="{ invalid: !description.isValid }">
       <label for="description">Description</label>
@@ -28,58 +62,100 @@
         v-model.trim="description.val"
         @blur="clearValidity('description')"
       ></textarea>
-      <p v-if="!description.isValid">Description must not be empty.</p>
+      <p class="error-message" v-if="!description.isValid">
+        Description must not be empty.
+      </p>
     </div>
-    <div class="form-control" :class="{ invalid: !rate.isValid }">
-      <label for="rate">Hourly Rate</label>
-      <input
-        type="number"
-        id="rate"
-        v-model.number="rate.val"
-        @blur="clearValidity('rate')"
-      />
-      <p v-if="!rate.isValid">Rate must be greater than 0.</p>
+    <div class="form-control">
+      <label for="description">Interests</label>
+      <textarea
+        id="interests"
+        rows="5"
+        v-model.trim="interests.val"
+        @blur="clearValidity('interests')"
+      ></textarea>
     </div>
-    <div class="form-control" :class="{ invalid: !areas.isValid }">
-      <h3>Areas of Expertise</h3>
+    <div class="form-control" :class="{ invalid: !level.isValid }">
+      <label>Level with the practicing language</label>
+      <div>
+        <input
+          type="radio"
+          id="beginner"
+          value="beginner"
+          v-model="level.val"
+          @blur="clearValidity('level')"
+        />
+        <label for="beginner">beginner</label>
+      </div>
+      <div>
+        <input
+          type="radio"
+          id="intermediate"
+          value="intermediate"
+          v-model="level.val"
+          @blur="clearValidity('level')"
+        />
+        <label for="intermediate">intermediate</label>
+      </div>
+      <div>
+        <input
+          type="radio"
+          id="professional"
+          value="professional"
+          v-model="level.val"
+          @blur="clearValidity('level')"
+        />
+        <label for="professional">professional</label>
+      </div>
+      <p class="error-message" v-if="!level.isValid">
+        At least one level must be selected.
+      </p>
+    </div>
+    <div class="form-control" :class="{ invalid: !exchange.isValid }">
+      <label>Type of exchange</label>
       <div>
         <input
           type="checkbox"
-          id="frontend"
-          value="frontend"
-          v-model="areas.val"
-          @blur="clearValidity('areas')"
+          id="conversation"
+          value="conversation"
+          v-model="exchange.val"
+          @blur="clearValidity('exchange')"
         />
-        <label for="frontend">Frontend Development</label>
+        <label for="conversation">Conversation</label>
       </div>
       <div>
         <input
           type="checkbox"
-          id="backend"
-          value="backend"
-          v-model="areas.val"
-          @blur="clearValidity('areas')"
+          id="chat"
+          value="chat"
+          v-model="exchange.val"
+          @blur="clearValidity('exchange')"
         />
-        <label for="backend">Backend Development</label>
+        <label for="chat">Chat</label>
       </div>
       <div>
         <input
           type="checkbox"
-          id="career"
-          value="career"
-          v-model="areas.val"
-          @blur="clearValidity('areas')"
+          id="correspondence"
+          value="correspondence"
+          v-model="exchange.val"
+          @blur="clearValidity('exchange')"
         />
-        <label for="career">Career Advisory</label>
+        <label for="correspondence">Correspondence</label>
       </div>
-      <p v-if="!areas.isValid">At least one expertise must be selected.</p>
+      <p class="error-message" v-if="!exchange.isValid">
+        At least one expertise must be selected.
+      </p>
     </div>
-    <p v-if="!formIsValid">Please fix the above errors and submit again.</p>
+    <p class="error-message" v-if="!formIsValid">
+      Please fix the above errors and submit again.
+    </p>
     <base-button>Register</base-button>
   </form>
 </template>
 
 <script lang="ts">
+import type { PartnerRegistration } from "@/models/interfaces/partner-registration";
 import { defineComponent } from "vue";
 
 interface FormControl {
@@ -90,9 +166,12 @@ interface FormControl {
 interface FormData {
   firstName: FormControl;
   lastName: FormControl;
+  langPractice: FormControl;
+  langNative: FormControl;
   description: FormControl;
-  rate: FormControl;
-  areas: FormControl;
+  interests: FormControl;
+  exchange: FormControl;
+  level: FormControl;
 }
 
 export default defineComponent({
@@ -107,19 +186,43 @@ export default defineComponent({
         val: "",
         isValid: true,
       },
+      langNative: {
+        val: [],
+        isValid: true,
+      },
+      langPractice: {
+        val: [],
+        isValid: true,
+      },
       description: {
         val: "",
         isValid: true,
       },
-      rate: {
-        val: null,
+      interests: {
+        val: "",
         isValid: true,
       },
-      areas: {
+      level: {
+        val: "",
+        isValid: true,
+      },
+      exchange: {
         val: [],
         isValid: true,
       },
       formIsValid: true,
+      langNativeOptions: [
+        { text: "English", value: "english" },
+        { text: "French", value: "french" },
+        { text: "Spanish", value: "spanish" },
+        { text: "German", value: "german" },
+      ],
+      langPracticeOptions: [
+        { text: "English", value: "english" },
+        { text: "French", value: "french" },
+        { text: "Spanish", value: "spanish" },
+        { text: "German", value: "german" },
+      ],
     };
   },
   methods: {
@@ -136,16 +239,24 @@ export default defineComponent({
         this.lastName.isValid = false;
         this.formIsValid = false;
       }
+      if (this.langNative.val.length == 0) {
+        this.langNative.isValid = false;
+        this.formIsValid = false;
+      }
+      if (this.langPractice.val.length == 0) {
+        this.langPractice.isValid = false;
+        this.formIsValid = false;
+      }
       if (this.description.val === "") {
         this.description.isValid = false;
         this.formIsValid = false;
       }
-      if (!this.rate.val || this.rate.val < 0) {
-        this.rate.isValid = false;
+      if (this.level.val === "") {
+        this.level.isValid = false;
         this.formIsValid = false;
       }
-      if (this.areas.val.length === 0) {
-        this.areas.isValid = false;
+      if (this.exchange.val.length === 0) {
+        this.exchange.isValid = false;
         this.formIsValid = false;
       }
     },
@@ -154,12 +265,15 @@ export default defineComponent({
       if (!this.formIsValid) {
         return;
       }
-      const formData = {
-        first: this.firstName.val,
-        last: this.lastName.val,
-        desc: this.description.val,
-        rate: this.rate.val,
-        areas: this.areas.val,
+      const formData: PartnerRegistration = {
+        firstName: this.firstName.val,
+        lastName: this.lastName.val,
+        langNative: this.langNative.val,
+        langPractice: this.langPractice.val,
+        description: this.description.val,
+        exchange: this.exchange.val,
+        interests: this.interests.val,
+        level: this.level.val as "professional" | "intermediate" | "beginner",
       };
       this.$emit("save-data", formData);
     },
@@ -181,6 +295,11 @@ input[type="checkbox"] + label {
   display: inline;
   margin: 0 0 0 0.5rem;
 }
+input[type="radio"] + label {
+  font-weight: normal;
+  display: inline;
+  margin: 0 0 0 0.5rem;
+}
 input,
 textarea {
   display: block;
@@ -195,12 +314,17 @@ textarea:focus {
   border-color: #3d008d;
 }
 input[type="checkbox"] {
-  display: inline;
+  display: inline-block;
   width: auto;
   border: none;
 }
 input[type="checkbox"]:focus {
   outline: #3d008d solid 1px;
+}
+input[type="radio"] {
+  display: inline-block;
+  width: auto;
+  border: none;
 }
 h3 {
   margin: 0.5rem 0;
@@ -209,8 +333,12 @@ h3 {
 .invalid label {
   color: red;
 }
+.error-message {
+  color: red;
+}
 .invalid input,
-.invalid textarea {
+.invalid textarea,
+.invalid select {
   border: 1px solid red;
 }
 </style>

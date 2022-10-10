@@ -5,6 +5,6 @@ export interface PartnerRegistration {
   langNative: string[];
   langPractice: string[];
   level: "professional" | "intermediate" | "beginner";
-  interest?: string;
+  interests?: string;
   exchange: Array<"conversation" | "chat" | "correspondence">;
 }
