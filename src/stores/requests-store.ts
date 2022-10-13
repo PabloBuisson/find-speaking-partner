@@ -33,44 +33,64 @@ export const useRequestsStore = defineStore("requests", {
       message: string;
       partnerId: string;
     }) {
-      const newRequest: Request = {
-        id: new Date().getTime(),
+      const newRequest: Partial<Request> = {
         userEmail: payload.email,
         message: payload.message,
-        partnerId: payload.partnerId,
       };
-      // TODO
-      this.addRequest(newRequest);
+
+      const response = await fetch(
+        `${import.meta.env.VITE_FIREBASE_URL}/requests/${
+          payload.partnerId
+        }.json`,
+        {
+          method: "POST",
+          body: JSON.stringify(newRequest),
+        }
+      );
+
+      const responseData = await response.json();
+
+      if (!response.ok) {
+        const error = new Error(
+          responseData.message || "Failed to send request."
+        );
+        throw error;
+      }
+
+      newRequest.id = responseData.name;
+      newRequest.partnerId = payload.partnerId;
+
+      this.addRequest(newRequest as Request);
     },
     async fetchRequests() {
       const authStore = useAuthStore();
-      const coachId = authStore._userId;
+      const partnerId = authStore._userId;
       const token = authStore._token;
       // TODO
-      // const response = await fetch(
-      //   `https://vue-find-coach-18842-default-rtdb.europe-west1.firebasedatabase.app/requests/${coachId}.json?auth=` +
-      //     token
-      // );
-      // const responseData = await response.json();
+      const response = await fetch(
+        `${import.meta.env.VITE_FIREBASE_URL}/requests/${partnerId}.json`
+        // ?auth=` + token
+      );
+      const responseData = await response.json();
 
-      // if (!response.ok) {
-      //   const error = new Error(
-      //     responseData.message || "Failed to fetch requests."
-      //   );
-      //   throw error;
-      // }
+      if (!response.ok) {
+        const error = new Error(
+          responseData.message || "Failed to fetch requests."
+        );
+        throw error;
+      }
 
-      const requests: Request[] = this.requests;
+      const requests: Request[] = [];
 
-      // for (const key in responseData) {
-      //   const request = {
-      //     id: key,
-      //     coachId: coachId,
-      //     userEmail: responseData[key].userEmail,
-      //     message: responseData[key].message,
-      //   };
-      //   requests.push(request);
-      // }
+      for (const key in responseData) {
+        const request: Request = {
+          id: key,
+          partnerId: partnerId as string,
+          userEmail: responseData[key].userEmail,
+          message: responseData[key].message,
+        };
+        requests.push(request);
+      }
 
       this.setRequests(requests);
     },

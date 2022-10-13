@@ -84,7 +84,7 @@ export const usePartnersStore = defineStore("partners", {
       });
     },
     async loadPartners(payload: { forceRefresh: boolean }) {
-      if (!payload.forceRefresh && this.shouldUpdate) {
+      if (!payload.forceRefresh && !this.shouldUpdate) {
         return;
       }
 
