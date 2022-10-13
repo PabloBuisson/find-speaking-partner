@@ -2,28 +2,28 @@ import { defineStore } from "pinia";
 import { useAuthStore } from "./auth-store";
 
 interface State {
-  requests: Request[];
+  _requests: Request[];
 }
 
 interface Request {
   id: string | number;
-  coachId: string | number;
+  partnerId: string | number;
   userEmail: string;
   message: string;
 }
 
 export const useRequestsStore = defineStore("requests", {
   state: (): State => ({
-    requests: [],
+    _requests: [],
   }),
   getters: {
-    savedRequests(state: State): Request[] {
+    requests(state: State): Request[] {
       const authStore = useAuthStore();
-      const coachId = authStore._userId;
-      return state.requests.filter((req) => req.coachId === coachId);
+      const partnerId = authStore.userId;
+      return state._requests.filter((req) => req.partnerId === partnerId);
     },
     hasRequests(): boolean {
-      return this.savedRequests != null && this.savedRequests.length > 0;
+      return this.requests != null && this.requests.length > 0;
     },
   },
   actions: {
@@ -31,14 +31,16 @@ export const useRequestsStore = defineStore("requests", {
     async contactPartner(payload: {
       email: string;
       message: string;
-      partnerId?: string;
+      partnerId: string;
     }) {
-      const newRequest = {
+      const newRequest: Request = {
+        id: new Date().getTime(),
         userEmail: payload.email,
         message: payload.message,
         partnerId: payload.partnerId,
       };
       // TODO
+      this.addRequest(newRequest);
     },
     async fetchRequests() {
       const authStore = useAuthStore();
@@ -58,7 +60,7 @@ export const useRequestsStore = defineStore("requests", {
       //   throw error;
       // }
 
-      const requests: Request[] = [];
+      const requests: Request[] = this.requests;
 
       // for (const key in responseData) {
       //   const request = {
@@ -73,10 +75,11 @@ export const useRequestsStore = defineStore("requests", {
       this.setRequests(requests);
     },
     addRequest(payload: Request) {
-      this.requests.push(payload);
+      this._requests.push(payload);
+      console.log(this._requests.length);
     },
     setRequests(payload: Request[]) {
-      this.requests = payload;
+      this._requests = payload;
     },
     // easily reset state using `$reset`
     clearStore() {

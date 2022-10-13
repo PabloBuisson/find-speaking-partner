@@ -15,7 +15,7 @@ let timer: any;
 
 export const useAuthStore = defineStore("auth", {
   state: (): State => ({
-    _userId: null,
+    _userId: "p3",
     _token: null,
     _didAutoLogout: false,
   }),
@@ -56,7 +56,7 @@ export const useAuthStore = defineStore("auth", {
       const expirationDate = new Date().getTime() + expiresIn;
 
       localStorage.setItem("token", `${new Date().getTime()}`);
-      localStorage.setItem("userId", `${new Date().getTime()}`);
+      localStorage.setItem("userId", `p3`);
       localStorage.setItem("tokenExpiration", `${expirationDate}`);
 
       timer = setTimeout(() => {
@@ -65,7 +65,7 @@ export const useAuthStore = defineStore("auth", {
 
       this.setUser({
         token: `${new Date().getTime()}`,
-        userId: `${new Date().getTime()}`,
+        userId: `p3`,
       });
     },
     tryLogin() {

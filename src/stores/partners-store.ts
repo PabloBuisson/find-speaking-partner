@@ -63,23 +63,61 @@ export const usePartnersStore = defineStore("partners", {
   },
   actions: {
     // no context as first argument, use `this` instead
-    registerPartner(data: PartnerRegistration) {
+    async registerPartner(data: PartnerRegistration) {
       const authStore = useAuthStore();
-      const partnerId = authStore._userId;
+      const partnerId = authStore.userId;
+      const token = authStore.token;
       const partnerData = data;
+
+      const response = await fetch(
+        `${import.meta.env.VITE_FIREBASE_URL}/partners/${partnerId}.json`,
+        // ?auth=` + token
+        {
+          method: "PUT",
+          body: JSON.stringify(partnerData),
+        }
+      );
 
       this.registerPartnerMutation({
         ...partnerData,
         id: partnerId ?? 0,
       });
     },
-    loadPartners(payload: { forceRefresh: boolean }) {
+    async loadPartners(payload: { forceRefresh: boolean }) {
       if (!payload.forceRefresh && this.shouldUpdate) {
         return;
       }
-      //TODO
-      const partners: Partner[] = this.partners;
+
+      const response = await fetch(
+        `${import.meta.env.VITE_FIREBASE_URL}/partners.json`
+      );
+      const responseData = await response.json();
+
+      if (!response.ok) {
+        const error = new Error(responseData.message || "Failed to fetch!");
+        throw error;
+      }
+
+      const partners: Partner[] = [];
+      for (const key in responseData) {
+        const partner: Partner = {
+          id: key,
+          firstName: responseData[key].firstName,
+          lastName: responseData[key].lastName,
+          description: responseData[key].description,
+          pseudo: responseData[key].pseudo,
+          email: responseData[key].email,
+          langNative: responseData[key].langNative,
+          langPractice: responseData[key].langPractice,
+          level: responseData[key].level,
+          interests: responseData[key].interests,
+          exchange: responseData[key].exchange,
+        };
+        partners.push(partner);
+      }
+
       this.setPartners(partners);
+      this.setFetchTimestamp();
     },
     // mutations can now become actions,
     // instead of `state` as first argument use `this`
