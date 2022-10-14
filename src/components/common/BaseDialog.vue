@@ -1,7 +1,7 @@
 <template>
-  <teleport to="body">
+  <Teleport to="body">
     <div v-if="show" @click="tryClose" class="backdrop"></div>
-    <transition name="dialog">
+    <Transition name="dialog">
       <dialog open v-if="show">
         <header>
           <slot name="header">
@@ -17,8 +17,8 @@
           </slot>
         </menu>
       </dialog>
-    </transition>
-  </teleport>
+    </Transition>
+  </Teleport>
 </template>
 
 <script lang="ts">
