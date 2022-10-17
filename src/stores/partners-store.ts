@@ -70,8 +70,9 @@ export const usePartnersStore = defineStore("partners", {
       const partnerData = data;
 
       const response = await fetch(
-        `${import.meta.env.VITE_FIREBASE_URL}/partners/${partnerId}.json`,
-        // ?auth=` + token
+        `${
+          import.meta.env.VITE_FIREBASE_URL
+        }/partners/${partnerId}.json?auth=${token}`,
         {
           method: "PUT",
           body: JSON.stringify(partnerData),

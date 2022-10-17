@@ -15,7 +15,7 @@ let timer: any;
 
 export const useAuthStore = defineStore("auth", {
   state: (): State => ({
-    _userId: "p3",
+    _userId: null,
     _token: null,
     _didAutoLogout: false,
   }),
@@ -50,13 +50,39 @@ export const useAuthStore = defineStore("auth", {
     async auth(payload: any) {
       const mode = payload.mode;
 
-      //TODO
+      const url =
+        mode === "login"
+          ? `${import.meta.env.VITE_FIREBASE_AUTH_LOGIN_ENTRYPOINT}${
+              import.meta.env.VITE_FIREBASE_API_KEY
+            }`
+          : `${import.meta.env.VITE_FIREBASE_AUTH_SIGNUP_ENTRYPOINT}${
+              import.meta.env.VITE_FIREBASE_API_KEY
+            }`;
 
-      const expiresIn = new Date().getMilliseconds() * 999999999999999;
+      const response = await fetch(url, {
+        method: "POST",
+        body: JSON.stringify({
+          email: payload.email,
+          password: payload.password,
+          returnSecureToken: true,
+        }),
+      });
+
+      const responseData = await response.json();
+
+      if (!response.ok) {
+        const error = new Error(
+          responseData.message ||
+            "Failed to authenticate. Check your login data."
+        );
+        throw error;
+      }
+
+      const expiresIn = +responseData.expiresIn * 1000;
       const expirationDate = new Date().getTime() + expiresIn;
 
-      localStorage.setItem("token", `${new Date().getTime()}`);
-      localStorage.setItem("userId", `p3`);
+      localStorage.setItem("token", responseData.idToken);
+      localStorage.setItem("userId", responseData.localId);
       localStorage.setItem("tokenExpiration", `${expirationDate}`);
 
       timer = setTimeout(() => {
@@ -64,8 +90,8 @@ export const useAuthStore = defineStore("auth", {
       }, expiresIn);
 
       this.setUser({
-        token: `${new Date().getTime()}`,
-        userId: `p3`,
+        token: responseData.idToken,
+        userId: responseData.localId,
       });
     },
     tryLogin() {

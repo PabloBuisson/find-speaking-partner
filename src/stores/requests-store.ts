@@ -68,8 +68,9 @@ export const useRequestsStore = defineStore("requests", {
       const token = authStore._token;
       // TODO
       const response = await fetch(
-        `${import.meta.env.VITE_FIREBASE_URL}/requests/${partnerId}.json`
-        // ?auth=` + token
+        `${
+          import.meta.env.VITE_FIREBASE_URL
+        }/requests/${partnerId}.json?auth=${token}`
       );
       const responseData = await response.json();
 
