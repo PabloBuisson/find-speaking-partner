@@ -1,16 +1,24 @@
 <script setup lang="ts">
-import { RouterView } from "vue-router";
+import { computed, watch } from "vue";
+import { RouterView, useRouter } from "vue-router";
 import TheHeader from "./components/layout/TheHeader.vue";
 import { useAuthStore } from "./stores/auth-store";
 
-// Because setup is run around the beforeCreate and created lifecycle hooks, 
-// you do not need to explicitly define them. 
-// In other words, any code that would be written inside those hooks 
+// Because setup is run around the beforeCreate and created lifecycle hooks,
+// you do not need to explicitly define them.
+// In other words, any code that would be written inside those hooks
 // should be written directly in the setup function.
 const authStore = useAuthStore();
+const router = useRouter();
 authStore.tryLogin();
 
+const didAutoLogout = computed(() => authStore.didAutoLogout);
 
+watch(didAutoLogout, (currentValue, oldValue) => {
+  if (currentValue && currentValue !== oldValue) {
+    router.replace("/partners");
+  }
+});
 </script>
 
 <template>
