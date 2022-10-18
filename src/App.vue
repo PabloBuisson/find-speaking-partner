@@ -1,6 +1,16 @@
 <script setup lang="ts">
 import { RouterView } from "vue-router";
 import TheHeader from "./components/layout/TheHeader.vue";
+import { useAuthStore } from "./stores/auth-store";
+
+// Because setup is run around the beforeCreate and created lifecycle hooks, 
+// you do not need to explicitly define them. 
+// In other words, any code that would be written inside those hooks 
+// should be written directly in the setup function.
+const authStore = useAuthStore();
+authStore.tryLogin();
+
+
 </script>
 
 <template>
