@@ -1,15 +1,14 @@
 import { createRouter, createWebHistory } from "vue-router";
-// import HomeView from "../views/HomeView.vue";
+
 import NotFound from "../views/NotFound.vue";
 import PartnersLists from "@/views/partners/PartnersList.vue";
 import { useAuthStore } from "@/stores/auth-store";
 
 // routes
-//const HomeView = () => import("../views/HomeView.vue");
+// Lazy loading for routes (recommended way) ↓
 const PartnerDetails = () => import("../views/partners/PartnerDetails.vue");
 const PartnerRegistration = () =>
   import("../views/partners/PartnerRegistration.vue");
-const ContactPartner = () => import("../views/requests/ContactPartner.vue");
 const RequestsReceived = () => import("../views/requests/RequestsReceived.vue");
 const UserAuth = () => import("../views/auth/UserAuth.vue");
 
@@ -26,9 +25,6 @@ const router = createRouter({
       path: "/partners/:id",
       component: PartnerDetails,
       props: true,
-      children: [
-        { path: "contact", component: ContactPartner }, // /partners/c1/contact
-      ],
     },
     {
       path: "/register",

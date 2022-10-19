@@ -1,4 +1,4 @@
-import { createApp } from "vue";
+import { createApp, defineAsyncComponent } from "vue";
 import { createPinia } from "pinia";
 
 import App from "./App.vue";
@@ -9,8 +9,12 @@ import "./assets/main.css";
 import BaseBadge from "./components/common/BaseBadge.vue";
 import BaseButton from "./components/common/BaseButton.vue";
 import BaseCard from "./components/common/BaseCard.vue";
-import BaseDialog from "./components/common/BaseDialog.vue";
 import BaseSpinner from "./components/common/BaseSpinner.vue";
+
+// Vue will download the component only when needed (lazy loading)
+const BaseDialog = defineAsyncComponent(
+  () => import("./components/common/BaseDialog.vue")
+);
 
 const app = createApp(App);
 
