@@ -1,24 +1,17 @@
 import { createRouter, createWebHistory } from "vue-router";
-import { defineAsyncComponent } from "vue";
-
-import { useAuthStore } from "@/stores/auth-store";
-import PartnersLists from "@/views/partners/PartnersList.vue";
+// import HomeView from "../views/HomeView.vue";
 import NotFound from "../views/NotFound.vue";
+import PartnersLists from "@/views/partners/PartnersList.vue";
+import { useAuthStore } from "@/stores/auth-store";
 
 // routes
-// Lazy loading ↓
-const PartnerDetails = defineAsyncComponent(
-  () => import("../views/partners/PartnerDetails.vue")
-);
-const PartnerRegistration = defineAsyncComponent(
-  () => import("../views/partners/PartnerRegistration.vue")
-);
-const RequestsReceived = defineAsyncComponent(
-  () => import("../views/requests/RequestsReceived.vue")
-);
-const UserAuth = defineAsyncComponent(
-  () => import("../views/auth/UserAuth.vue")
-);
+//const HomeView = () => import("../views/HomeView.vue");
+const PartnerDetails = () => import("../views/partners/PartnerDetails.vue");
+const PartnerRegistration = () =>
+  import("../views/partners/PartnerRegistration.vue");
+const ContactPartner = () => import("../views/requests/ContactPartner.vue");
+const RequestsReceived = () => import("../views/requests/RequestsReceived.vue");
+const UserAuth = () => import("../views/auth/UserAuth.vue");
 
 const router = createRouter({
   history: createWebHistory(),
@@ -33,6 +26,9 @@ const router = createRouter({
       path: "/partners/:id",
       component: PartnerDetails,
       props: true,
+      children: [
+        { path: "contact", component: ContactPartner }, // /partners/c1/contact
+      ],
     },
     {
       path: "/register",
