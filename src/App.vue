@@ -23,11 +23,12 @@ watch(didAutoLogout, (currentValue, oldValue) => {
 
 <template>
   <TheHeader />
-  <RouterView v-slot="slotProps">
+  <!-- <RouterView v-slot="slotProps">
     <Transition name="route" mode="out-in">
       <component :is="slotProps.Component"></component>
     </Transition>
-  </RouterView>
+  </RouterView> -->
+  <RouterView></RouterView>
 </template>
 
 <style>
