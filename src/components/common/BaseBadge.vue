@@ -25,11 +25,14 @@ export default defineComponent({
   display: inline-block;
   margin-right: 0.5rem;
 }
-
 .native {
-  border-color: #3d008d;
+  border-color: white;
+  color: var(--color-background, green);
+  background-color: var(--color-background-light, lightgreen);
 }
 .practice {
-  border-color: #71008d;
+  border-color: white;
+  color: var(--color-action, red);
+  background-color: var(--color-action-light, lightpink);
 }
 </style>

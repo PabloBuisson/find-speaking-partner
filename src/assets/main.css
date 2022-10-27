@@ -1,5 +1,18 @@
 @import "./base.css";
 
+form {
+  accent-color: var(--color-action);
+}
+
+/* .button-action {
+  background-color: var(--color-action);
+  color: white;
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 1rem;
+  display: inline-block;
+} */
+
 /* a,
 .green {
   text-decoration: none;

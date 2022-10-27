@@ -6,34 +6,37 @@
     <section>
       <PartnerFilter @change-filter="setFilters"></PartnerFilter>
     </section>
-    <section>
-      <BaseCard>
-        <div class="controls">
-          <BaseButton mode="outline" @click="loadPartners(true)"
-            >Refresh</BaseButton
-          >
-          <BaseButton link to="/auth?redirect=register" v-if="!isLoggedIn"
-            >Login to Register as Partner</BaseButton
-          >
-          <BaseButton
-            v-if="isLoggedIn && !isPartner && !isLoading"
-            link
-            to="/register"
-            >Register as Partner</BaseButton
-          >
-        </div>
-        <div v-if="isLoading">
-          <BaseSpinner></BaseSpinner>
-        </div>
-        <ul v-else-if="hasPartners">
-          <PartnerItem
-            v-for="partner in filteredPartners"
-            :key="partner.id"
-            :partner="partner"
-          ></PartnerItem>
-        </ul>
-        <h3 v-else>No partners found.</h3>
-      </BaseCard>
+    <section class="list-section">
+      <div class="controls">
+        <BaseButton mode="outline" @click="loadPartners(true)"
+          >Refresh</BaseButton
+        >
+        <BaseButton
+          link
+          to="/auth?redirect=register"
+          v-if="!isLoggedIn"
+          class="button-action"
+          >Login to Register as Partner</BaseButton
+        >
+        <BaseButton
+          v-if="isLoggedIn && !isPartner && !isLoading"
+          link
+          to="/register"
+          class="button-action"
+          >Register as Partner</BaseButton
+        >
+      </div>
+      <div v-if="isLoading">
+        <BaseSpinner></BaseSpinner>
+      </div>
+      <ul v-else-if="hasPartners">
+        <PartnerItem
+          v-for="partner in filteredPartners"
+          :key="partner.id"
+          :partner="partner"
+        ></PartnerItem>
+      </ul>
+      <h3 v-else>No partners found.</h3>
     </section>
   </div>
 </template>
@@ -135,6 +138,10 @@ ul {
   list-style: none;
   margin: 0;
   padding: 0;
+}
+.list-section {
+  margin: 2rem auto;
+  max-width: 40rem;
 }
 .controls {
   display: flex;

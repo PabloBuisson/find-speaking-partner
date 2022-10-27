@@ -2,18 +2,20 @@
   <BaseCard>
     <h2>Find Your Partner</h2>
     <p>Learning level</p>
-    <span class="filter-option">
-      <input type="checkbox" id="professional" checked @change="setFilter" />
-      <label for="professional">Professional</label>
-    </span>
-    <span class="filter-option">
-      <input type="checkbox" id="intermediate" checked @change="setFilter" />
-      <label for="intermediate">Intermediate</label>
-    </span>
-    <span class="filter-option">
-      <input type="checkbox" id="beginner" checked @change="setFilter" />
-      <label for="beginner">Beginner</label>
-    </span>
+    <form>
+      <span class="filter-option">
+        <input type="checkbox" id="professional" checked @change="setFilter" />
+        <label for="professional">Professional</label>
+      </span>
+      <span class="filter-option">
+        <input type="checkbox" id="intermediate" checked @change="setFilter" />
+        <label for="intermediate">Intermediate</label>
+      </span>
+      <span class="filter-option">
+        <input type="checkbox" id="beginner" checked @change="setFilter" />
+        <label for="beginner">Beginner</label>
+      </span>
+    </form>
   </BaseCard>
 </template>
 

@@ -15,7 +15,11 @@
           <RouterLink to="/auth">Login</RouterLink>
         </li>
         <li v-if="isLoggedIn">
-          <BaseButton @click="logout">Logout</BaseButton>
+          <BaseButton
+            style="background-color: var(--color-background, black)"
+            @click="logout"
+            >Logout</BaseButton
+          >
         </li>
       </ul>
     </nav>
@@ -50,14 +54,14 @@ export default defineComponent({
 header {
   width: 100%;
   height: 5rem;
-  background-color: #3d008d;
+  background-color: var(--color-background, black);
   display: flex;
   justify-content: center;
   align-items: center;
 }
 header a {
   text-decoration: none;
-  color: #f391e3;
+  color: var(--color-background-mute, white);
   display: inline-block;
   padding: 0.75rem 1.5rem;
   border: 1px solid transparent;
@@ -65,7 +69,7 @@ header a {
 a:active,
 a:hover,
 a.router-link-active {
-  border: 1px solid #f391e3;
+  border: 1px solid var(--color-background-mute, white);
 }
 h1 {
   margin: 0;

@@ -4,6 +4,9 @@
   --vt-c-white-soft: #f8f8f8;
   --vt-c-white-mute: #f2f2f2;
 
+  --hue-green: 153;
+  --hue-red: 350;
+
   --vt-c-black: #181818;
   --vt-c-black-soft: #222222;
   --vt-c-black-mute: #282828;
@@ -23,15 +26,21 @@
 
 /* semantic color variables for this project */
 :root {
-  --color-background: var(--vt-c-white);
-  --color-background-soft: var(--vt-c-white-soft);
-  --color-background-mute: var(--vt-c-white-mute);
+  --color-background: hsl(var(--hue-green), 50%, 30%);
+  --color-background-soft: hsl(var(--hue-green), 40%, 60%);
+  --color-background-light: hsl(var(--hue-green), 40%, 96%);
+  --color-background-mute: hsl(var(--hue-green), 10%, 95%);
+
+  --color-action: hsl(var(--hue-red), 60%, 50%);
+  --color-action-soft: hsl(var(--hue-red), 50%, 90%);
+  --color-action-light: hsl(var(--hue-red), 40%, 96%);
+  --color-action-dark: hsl(var(--hue-red), 70%, 30%);
 
   --color-border: var(--vt-c-divider-light-2);
   --color-border-hover: var(--vt-c-divider-light-1);
 
   --color-heading: var(--vt-c-text-light-1);
-  --color-text: var(--vt-c-text-light-1);
+  --color-text: hsl(var(--hue-green), 60%, 10%);
 
   --section-gap: 160px;
 }
@@ -62,7 +71,7 @@
 body {
   min-height: 100vh;
   color: var(--color-text);
-  background: var(--color-background);
+  background: var(--color-background-mute);
   transition: color 0.5s, background-color 0.5s;
   line-height: 1.6;
   font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
