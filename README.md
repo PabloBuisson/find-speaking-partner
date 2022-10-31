@@ -8,7 +8,7 @@ A Vue application which show how to handle **HTTP requests**, **routing**, **aut
 * Be familiar with **Vite** (add env variables)
 * Learn **Pinia** to manage data
 * Add **authentication** with Firebase
-* Add **access to a database** with Firebase
+* Add **access to an online database** with Firebase
 * Add **TypeScript** support
 * Mix **Options API** and **Composition API**
 * Add shared CSS
@@ -16,8 +16,8 @@ A Vue application which show how to handle **HTTP requests**, **routing**, **aut
 ## :dart: Presentation of the project
 
 * **Find a Speaking Partner** is an application to help you find someone to improve your speaking skills.
-* The application is built around the core concepts of *Vue.js* : HTTP requests, form validation, authentication, state management, routing.
-* The application is based on one of the many project of the course [Develop with VueJS](#https://www.udemy.com/course/vuejs-2-the-complete-guide/), which I highly recommend.
+* The application is built around the core concepts of *Vue.js* : HTTP requests, form validation, authentication, state management, routing and many more.
+* The application is based on one of the many project of the course [Develop with VueJS](https://www.udemy.com/course/vuejs-2-the-complete-guide/), which I highly recommend.
   
 ## :iphone: Images
 
