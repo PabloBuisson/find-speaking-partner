@@ -1,46 +1,45 @@
-# find-speaking-partner
+# Find a Speaking Partner
 
-This template should help get you started developing with Vue 3 in Vite.
+A Vue application which show how to handle **HTTP requests**, **routing**, **authentication** and **state management**.
 
-## Recommended IDE Setup
+## :rocket: Goals of the project
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+* Be familiar with **Vue**
+* Be familiar with **Vite** (add env variables)
+* Learn **Pinia** to manage data
+* Add **authentication** with Firebase
+* Add **access to a database** with Firebase
+* Add **TypeScript** support
+* Mix **Options API** and **Composition API**
+* Add shared CSS
 
-## Type Support for `.vue` Imports in TS
+## :dart: Presentation of the project
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+* **Find a Speaking Partner** is an application to help you find someone to improve your speaking skills.
+* The application is built around the core concepts of *Vue.js* : HTTP requests, form validation, authentication, state management, routing.
+  
+## :iphone: Images
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+TODO
 
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
+## 🏍 Run the project
+1. Clone the repo
+2. Create a .env file at the root of the project
+3. Add your variables :
+```php
+VITE_FIREBASE_URL=""
+VITE_FIREBASE_AUTH_SIGNUP_ENTRYPOINT=""
+VITE_FIREBASE_AUTH_LOGIN_ENTRYPOINT=""
+VITE_FIREBASE_API_KEY=""
 ```
+4. ``npm install``
+5. ``npm run dev``
 
-### Compile and Hot-Reload for Development
+## :package: Packages
 
-```sh
-npm run dev
-```
+* No packages for this project
 
-### Type-Check, Compile and Minify for Production
+## :pushpin: Technologies
 
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+* Node v16.13.2
+* Vue 3.2.37
