@@ -9,7 +9,7 @@
         @blur="clearValidity('firstName')"
       />
       <p class="error-message" v-if="!firstName.isValid">
-        Firstname must not be empty.
+        Your firstname must not be empty.
       </p>
     </div>
     <div class="form-control" :class="{ invalid: !lastName.isValid }">
@@ -21,7 +21,7 @@
         @blur="clearValidity('lastName')"
       />
       <p class="error-message" v-if="!lastName.isValid">
-        Lastname must not be empty.
+        Your lastname must not be empty.
       </p>
     </div>
     <div class="form-control" :class="{ invalid: !langNative.isValid }">
@@ -63,7 +63,7 @@
         @blur="clearValidity('description')"
       ></textarea>
       <p class="error-message" v-if="!description.isValid">
-        Description must not be empty.
+        Your description of yourself must not be empty.
       </p>
     </div>
     <div class="form-control">
@@ -144,14 +144,14 @@
         <label for="correspondence">Correspondence</label>
       </div>
       <p class="error-message" v-if="!exchange.isValid">
-        At least one expertise must be selected.
+        At least one type of exchange must be selected.
       </p>
     </div>
     <p class="error-message" v-if="!formIsValid">
       Please fix the above errors and submit again.
     </p>
     <div class="action-button">
-      <base-button>Register</base-button>
+      <BaseButton>Register</BaseButton>
     </div>
   </form>
 </template>

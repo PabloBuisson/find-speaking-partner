@@ -1,23 +1,23 @@
 <template>
   <div>
     <section>
-      <base-card>
+      <BaseCard>
         <h2>{{ fullName }}</h2>
         <p class="info-item">Learning level : {{ selectedPartner.level }}</p>
         <p class="info-item">Speaks...</p>
-        <base-badge
+        <BaseBadge
           v-for="lang in langNative"
           :key="lang"
           type="native"
           :title="lang"
-        ></base-badge>
+        ></BaseBadge>
         <p class="info-item">Is practicing...</p>
-        <base-badge
+        <BaseBadge
           v-for="lang in langPractice"
           :key="lang"
           type="practice"
           :title="lang"
-        ></base-badge>
+        ></BaseBadge>
         <h3 class="subtitle">Who am I ?</h3>
         <p class="info-item info-quote">{{ description }}</p>
         <h3 class="subtitle">I'm interested in...</h3>
@@ -30,15 +30,15 @@
         >
           {{ exchange }}
         </li>
-      </base-card>
+      </BaseCard>
     </section>
     <section>
-      <base-card>
+      <BaseCard>
         <header>
           <h2 :id="contactAnchor">Interested ? Reach out now !</h2>
           <ContactPartner></ContactPartner>
         </header>
-      </base-card>
+      </BaseCard>
     </section>
   </div>
 </template>

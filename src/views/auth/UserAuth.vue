@@ -1,12 +1,12 @@
 <template>
   <div>
-    <base-dialog :show="!!error" title="Oops, an error occurred" @close="handleError">
+    <BaseDialog :show="!!error" title="Oops, an error occurred" @close="handleError">
       <p>{{ error }}</p>
-    </base-dialog>
-    <base-dialog :show="isLoading" title="Authenticating..." fixed>
-      <base-spinner></base-spinner>
-    </base-dialog>
-    <base-card>
+    </BaseDialog>
+    <BaseDialog :show="isLoading" title="Authenticating..." fixed>
+      <BaseSpinner></BaseSpinner>
+    </BaseDialog>
+    <BaseCard>
       <h2 class="form-title">Login or signup</h2>
       <form @submit.prevent="submitForm">
         <div class="form-control">
@@ -28,7 +28,7 @@
           }}</base-button>
         </div>
       </form>
-    </base-card>
+    </BaseCard>
   </div>
 </template>
 

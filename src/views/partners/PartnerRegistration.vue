@@ -1,9 +1,9 @@
 <template>
   <section>
-    <base-card>
+    <BaseCard>
       <h2>Register as a partner now !</h2>
       <PartnerForm @save-data="saveData"></PartnerForm>
-    </base-card>
+    </BaseCard>
   </section>
 </template>
 

@@ -2,9 +2,9 @@
   <button v-if="!link" :class="mode" class="button-action">
     <slot></slot>
   </button>
-  <router-link v-else :to="to" :class="mode" class="button-action">
+  <RouterLink v-else :to="to" :class="mode" class="button-action">
     <slot></slot>
-  </router-link>
+  </RouterLink>
 </template>
 
 <script lang="ts">

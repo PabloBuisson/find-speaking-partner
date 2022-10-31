@@ -1,11 +1,11 @@
 <template>
   <section>
-    <base-card>
+    <BaseCard>
       <h2>Oops, page not found</h2>
       <p>
         This page could not be found - maybe check out all our
-        <router-link to="/partners">partners</router-link> ?
+        <RouterLink to="/partners">partners</RouterLink> ?
       </p>
-    </base-card>
+    </BaseCard>
   </section>
 </template>
