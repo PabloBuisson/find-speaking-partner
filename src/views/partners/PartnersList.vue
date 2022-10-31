@@ -16,7 +16,7 @@
           to="/auth?redirect=register"
           v-if="!isLoggedIn"
           class="button-action"
-          >Login to Register as Partner</BaseButton
+          >Login to register as partner</BaseButton
         >
         <BaseButton
           v-if="isLoggedIn && !isPartner && !isLoading"

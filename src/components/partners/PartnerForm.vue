@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent="submitForm">
     <div class="form-control" :class="{ invalid: !firstName.isValid }">
-      <label for="firstname">Firstname</label>
+      <label for="firstname">Your firstname</label>
       <input
         type="text"
         id="firstname"
@@ -13,7 +13,7 @@
       </p>
     </div>
     <div class="form-control" :class="{ invalid: !lastName.isValid }">
-      <label for="lastname">Lastname</label>
+      <label for="lastname">Your lastname</label>
       <input
         type="text"
         id="lastname"
@@ -55,7 +55,7 @@
       </p>
     </div>
     <div class="form-control" :class="{ invalid: !description.isValid }">
-      <label for="description">Description</label>
+      <label for="description">How would you describe yourself ?</label>
       <textarea
         id="description"
         rows="5"
@@ -67,7 +67,7 @@
       </p>
     </div>
     <div class="form-control">
-      <label for="description">Interests</label>
+      <label for="description">What are your fields of interest ?</label>
       <textarea
         id="interests"
         rows="5"
@@ -76,7 +76,7 @@
       ></textarea>
     </div>
     <div class="form-control" :class="{ invalid: !level.isValid }">
-      <label>Level with the practicing language</label>
+      <label>Your level with the practicing language</label>
       <div>
         <input
           type="radio"
@@ -112,7 +112,7 @@
       </p>
     </div>
     <div class="form-control" :class="{ invalid: !exchange.isValid }">
-      <label>Type of exchange</label>
+      <label>Type(s) of exchange wanted</label>
       <div>
         <input
           type="checkbox"
@@ -150,7 +150,9 @@
     <p class="error-message" v-if="!formIsValid">
       Please fix the above errors and submit again.
     </p>
-    <base-button>Register</base-button>
+    <div class="action-button">
+      <base-button>Register</base-button>
+    </div>
   </form>
 </template>
 
@@ -283,12 +285,7 @@ export default defineComponent({
 
 <style scoped>
 .form-control {
-  margin: 0.5rem 0;
-}
-label {
-  font-weight: bold;
-  display: block;
-  margin-bottom: 0.5rem;
+  margin: 1rem 0;
 }
 input[type="checkbox"] + label {
   font-weight: normal;
@@ -300,45 +297,19 @@ input[type="radio"] + label {
   display: inline;
   margin: 0 0 0 0.5rem;
 }
-input,
-textarea {
-  display: block;
-  width: 100%;
-  border: 1px solid #ccc;
-  font: inherit;
-}
-input:focus,
-textarea:focus {
-  background-color: #f0e6fd;
-  outline: none;
-  border-color: #3d008d;
-}
 input[type="checkbox"] {
   display: inline-block;
   width: auto;
   border: none;
-}
-input[type="checkbox"]:focus {
-  outline: #3d008d solid 1px;
 }
 input[type="radio"] {
   display: inline-block;
   width: auto;
   border: none;
 }
-h3 {
-  margin: 0.5rem 0;
-  font-size: 1rem;
-}
-.invalid label {
-  color: red;
-}
-.error-message {
-  color: red;
-}
-.invalid input,
-.invalid textarea,
-.invalid select {
-  border: 1px solid red;
+.action-button {
+  margin: 2rem;
+  display: flex;
+  justify-content: center;
 }
 </style>

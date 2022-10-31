@@ -4,6 +4,54 @@ form {
   accent-color: var(--color-action);
 }
 
+h1 {
+  font-size: 1.75rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+
+h4 {
+  font-size: 1.125rem;
+}
+
+input,
+textarea {
+  display: block;
+  width: 100%;
+  font: inherit;
+  border: 0.1rem solid var(--color-border);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.125rem;
+}
+
+input:focus,
+textarea:focus {
+  border-color: var(--color-background-soft);
+  background-color: var(--color-background-light);
+  outline: none;
+}
+
+label {
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.error-message {
+  color: hsl(350, 80%, 40%);
+  margin: 0.5rem 0;
+}
+
+.invalid input,
+.invalid textarea,
+.invalid select {
+  border: 0.1rem solid hsl(350, 80%, 60%);
+}
 /* .button-action {
   background-color: var(--color-action);
   color: white;

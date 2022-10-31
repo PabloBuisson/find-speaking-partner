@@ -28,7 +28,7 @@
       <BaseButton mode="outline" link :to="partnerContactLink"
         >Contact</BaseButton
       >
-      <BaseButton link :to="partnerDetailsLink">View Details</BaseButton>
+      <BaseButton link :to="partnerDetailsLink">View details</BaseButton>
     </div>
   </BaseCard>
 </template>
@@ -62,7 +62,6 @@ export default defineComponent({
 
 <style scoped>
 h3 {
-  font-size: 1.5rem;
   margin-bottom: 0.5rem;
 }
 .columns-profile {

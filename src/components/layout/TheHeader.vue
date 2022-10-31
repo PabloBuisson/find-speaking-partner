@@ -64,12 +64,12 @@ header a {
   color: var(--color-background-mute, white);
   display: inline-block;
   padding: 0.75rem 1.5rem;
-  border: 1px solid transparent;
+  border: 0.1rem solid transparent;
 }
 a:active,
 a:hover,
 a.router-link-active {
-  border: 1px solid var(--color-background-mute, white);
+  border: 0.1rem solid var(--color-background-soft, white);
 }
 h1 {
   margin: 0;

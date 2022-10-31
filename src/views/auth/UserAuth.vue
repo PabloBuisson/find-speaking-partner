@@ -1,29 +1,32 @@
 <template>
   <div>
-    <base-dialog :show="!!error" title="An error occurred" @close="handleError">
+    <base-dialog :show="!!error" title="Oops, an error occurred" @close="handleError">
       <p>{{ error }}</p>
     </base-dialog>
     <base-dialog :show="isLoading" title="Authenticating..." fixed>
       <base-spinner></base-spinner>
     </base-dialog>
     <base-card>
+      <h2 class="form-title">Login or signup</h2>
       <form @submit.prevent="submitForm">
         <div class="form-control">
-          <label for="email">E-Mail</label>
+          <label for="email">Your e-mail</label>
           <input type="email" id="email" v-model.trim="email" />
         </div>
         <div class="form-control">
-          <label for="password">Password</label>
+          <label for="password">Your password</label>
           <input type="password" id="password" v-model.trim="password" />
         </div>
-        <p v-if="!formIsValid">
+        <p class="error-message" v-if="!formIsValid">
           Please enter a valid email and password (must be at least 6 characters
           long).
         </p>
-        <base-button>{{ submitButtonCaption }}</base-button>
-        <base-button type="button" mode="flat" @click="switchAuthMode">{{
-          switchModeButtonCaption
-        }}</base-button>
+        <div class="action-buttons">
+          <base-button>{{ submitButtonCaption }}</base-button>
+          <base-button type="button" mode="flat" @click="switchAuthMode">{{
+            switchModeButtonCaption
+          }}</base-button>
+        </div>
       </form>
     </base-card>
   </div>
@@ -108,30 +111,19 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.form-title {
+  text-align: center;
+}
 form {
-  margin: 1rem;
-  padding: 1rem;
+  padding: 2rem 4rem;
 }
 .form-control {
-  margin: 0.5rem 0;
+  margin: 1rem 0;
 }
-label {
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-  display: block;
-}
-input,
-textarea {
-  display: block;
-  width: 100%;
-  font: inherit;
-  border: 1px solid #ccc;
-  padding: 0.15rem;
-}
-input:focus,
-textarea:focus {
-  border-color: #3d008d;
-  background-color: #faf6ff;
-  outline: none;
+.action-buttons {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
 }
 </style>

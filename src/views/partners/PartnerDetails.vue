@@ -2,28 +2,32 @@
   <div>
     <section>
       <base-card>
-        <h1>{{ fullName }}</h1>
-        <p>Learning level : {{ selectedPartner.level }}</p>
-        <p>Speaks</p>
+        <h2>{{ fullName }}</h2>
+        <p class="info-item">Learning level : {{ selectedPartner.level }}</p>
+        <p class="info-item">Speaks...</p>
         <base-badge
           v-for="lang in langNative"
           :key="lang"
           type="native"
           :title="lang"
         ></base-badge>
-        <p>Practicing</p>
+        <p class="info-item">Is practicing...</p>
         <base-badge
           v-for="lang in langPractice"
           :key="lang"
           type="practice"
           :title="lang"
         ></base-badge>
-        <h2>Who am I ?</h2>
-        <p>{{ description }}</p>
-        <h2>I'm interested in...</h2>
-        <p>{{ interests }}</p>
-        <h2>What am I looking for ?</h2>
-        <li v-for="exchange in typeOfExchange" :key="exchange">
+        <h3 class="subtitle">Who am I ?</h3>
+        <p class="info-item info-quote">{{ description }}</p>
+        <h3 class="subtitle">I'm interested in...</h3>
+        <p class="info-item info-quote">{{ interests }}</p>
+        <h3 class="subtitle">What am I looking for ?</h3>
+        <li
+          class="list-item"
+          v-for="exchange in typeOfExchange"
+          :key="exchange"
+        >
           {{ exchange }}
         </li>
       </base-card>
@@ -31,7 +35,7 @@
     <section>
       <base-card>
         <header>
-          <h2 :id="contactAnchor">Interested? Reach out now!</h2>
+          <h2 :id="contactAnchor">Interested ? Reach out now !</h2>
           <ContactPartner></ContactPartner>
         </header>
       </base-card>
@@ -100,3 +104,28 @@ export default defineComponent({
   components: { ContactPartner },
 });
 </script>
+
+<style scoped>
+.subtitle {
+  margin-top: 0.75rem;
+}
+.info-item {
+  margin: 0.5rem 0 0.25rem 0;
+}
+.info-quote {
+  border-left: 0.25rem solid var(--color-background-light);
+  padding-left: 0.5rem;
+}
+.list-item {
+  list-style: none;
+}
+.list-item::before {
+  font-family: "Material Icons";
+  content: "check";
+  font-size: 1.5rem;
+  color: var(--color-background-soft, green);
+  vertical-align: middle;
+  line-height: 1px;
+  margin-right: 1rem;
+}
+</style>

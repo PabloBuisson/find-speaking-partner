@@ -53,14 +53,20 @@ h2 {
   margin: 0.5rem 0;
 }
 .filter-option {
-  margin-right: 1rem;
+  margin-right: 1.25rem;
+}
+.filter-option input {
+  display: inline-block;
+  width: unset;
 }
 .filter-option label,
 .filter-option input {
   vertical-align: middle;
 }
 .filter-option label {
-  margin-left: 0.25rem;
+  margin-left: 0.5rem;
+  margin-bottom: 0;
+  display: inline-block;
 }
 .filter-option.active label {
   font-weight: bold;

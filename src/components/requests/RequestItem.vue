@@ -21,17 +21,18 @@ export default {
 <style scoped>
 li {
   margin: 1rem 0;
-  border: 1px solid #ccc;
+  border: 0.1rem solid var(--color-border, #ccc);
   padding: 1rem;
 }
 a {
-  color: #3d008d;
+  color: var(--color-background, green);
   text-decoration: none;
   font-weight: bold;
 }
 a:hover,
 a:active {
-  color: #8d007a;
+  color: var(--color-background, green);
+  text-decoration: underline 0.1rem var(--color-background, green);
 }
 p {
   margin: 0.5rem 0 0 0;

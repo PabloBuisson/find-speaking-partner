@@ -36,6 +36,10 @@
   --color-action-light: hsl(var(--hue-red), 40%, 96%);
   --color-action-dark: hsl(var(--hue-red), 70%, 30%);
 
+  --color-border: hsl(var(--hue-green), 20%, 60%);
+  --color-border-soft: hsl(var(--hue-green), 10%, 70%);
+  --color-border-light: hsl(var(--hue-green), 6%, 80%);
+
   --color-border: var(--vt-c-divider-light-2);
   --color-border-hover: var(--vt-c-divider-light-1);
 
@@ -76,7 +80,6 @@ body {
   line-height: 1.6;
   font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
     Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  font-size: 15px;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
