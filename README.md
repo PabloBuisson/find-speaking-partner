@@ -21,11 +21,11 @@ A Vue application which show how to handle **HTTP requests**, **routing**, **aut
   
 ## :iphone: Images
 
-TODO
+<img width="100%" alt="Project 'Find A Speaking Partner' video demonstration" src="https://user-images.githubusercontent.com/41048008/198984043-1c1e39ae-9dfe-474c-81b7-d0c940949185.gif">
 
 ## 🏍 Run the project
 1. Clone the repo
-2. Create a .env file at the root of the project
+2. Create a ``.env`` file at the root of the project
 3. Add your variables :
 ```sh
 VITE_FIREBASE_URL=""

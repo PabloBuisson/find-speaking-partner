@@ -30,7 +30,7 @@ export const usePartnersStore = defineStore("partners", {
         lastName: "Buisson",
         langNative: ["French"],
         langPractice: ["English"],
-        description: "I'm Pablo and I would like to improve my english !",
+        description: "I'm French and I would like to improve my English !",
         level: "intermediate",
         interests:
           "Writing, Programming, Reading, and in general every word which ends with 'ing'.",
